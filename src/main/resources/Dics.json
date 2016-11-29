@@ -1,0 +1,10 @@
+[
+{
+	"dicType": "GENDER",
+	"dicTypeDesc": "性别",
+	"dicItems": [
+		{"code": "1", "desc": "男"},
+		{"code": "2", "desc": "女"}
+	]
+}
+]
