@@ -27,7 +27,6 @@ spring:
 
 # 日志
 logging:
-    config: classpath:logback.xml
     path: ./log
 
 # 服务器
