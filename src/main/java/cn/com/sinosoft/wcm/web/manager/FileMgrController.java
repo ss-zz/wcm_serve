@@ -20,17 +20,14 @@ public class FileMgrController {
 	/**
 	 * 
 	 *
-	 * @param params1
-	 * 			参数1
-	 * @param params2
-	 * 			参数2
+	 * @param name
+	 * 			文件名
 	 * @param pageParam
 	 * 			分页参数
 	 * @return
 	 */
 	@PostMapping("list")
-	public APIResult<PagingResult<TWcmFile>> getList(String params1,
-			String params2, PageParam pageParam) {
+	public APIResult<PagingResult<TWcmFile>> getList(String name,PageParam pageParam) {
 		return new APIResult<PagingResult<TWcmFile>>(
 				new PagingResult<TWcmFile>());
 	}

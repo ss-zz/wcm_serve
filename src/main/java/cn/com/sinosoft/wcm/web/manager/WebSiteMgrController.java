@@ -30,17 +30,17 @@ public class WebSiteMgrController {
 	/**
 	 * 
 	 *
-	 * @param params1
-	 * 			参数1
-	 * @param params2
-	 * 			参数2
+	 * @param name
+	 * 			站点名称
+	 * @param alias
+	 * 			站点别名
 	 * @param pageParam
 	 * 			分页参数
 	 * @return
 	 */
 	@PostMapping("list")
-	public APIResult<PagingResult<TWcmWebsite>> getList(String params1,
-			String params2, PageParam pageParam) {
+	public APIResult<PagingResult<TWcmWebsite>> getList(String name,
+			String alias, PageParam pageParam) {
 		return new APIResult<PagingResult<TWcmWebsite>>(
 				new PagingResult<TWcmWebsite>());
 	}

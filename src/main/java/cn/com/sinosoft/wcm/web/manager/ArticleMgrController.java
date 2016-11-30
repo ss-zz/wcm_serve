@@ -24,17 +24,14 @@ public class ArticleMgrController {
 	/**
 	 * 
 	 *
-	 * @param params1
-	 * 			参数1
-	 * @param params2
-	 * 			参数2
+	 * @param title
+	 * 			文章标题
 	 * @param pageParam
 	 * 			分页参数
 	 * @return
 	 */
 	@PostMapping("list")
-	public APIResult<PagingResult<TWcmArticle>> getList(String params1,
-			String params2, PageParam pageParam) {
+	public APIResult<PagingResult<TWcmArticle>> getList(String title,PageParam pageParam) {
 		return new APIResult<PagingResult<TWcmArticle>>(
 				new PagingResult<TWcmArticle>());
 	}

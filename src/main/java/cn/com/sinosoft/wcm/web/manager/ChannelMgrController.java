@@ -25,17 +25,17 @@ public class ChannelMgrController {
 	/**
 	 * 
 	 *
-	 * @param params1
-	 * 			参数1
-	 * @param params2
-	 * 			参数2
+	 * @param name
+	 * 			栏目名称
+	 * @param alias
+	 * 			栏目别名
 	 * @param pageParam
 	 * 			分页参数
 	 * @return
 	 */
 	@PostMapping("list")
-	public APIResult<PagingResult<TWcmChannel>> getList(String params1,
-			String params2, PageParam pageParam) {
+	public APIResult<PagingResult<TWcmChannel>> getList(String name,
+			String alias, PageParam pageParam) {
 		return new APIResult<PagingResult<TWcmChannel>>(
 				new PagingResult<TWcmChannel>());
 	}

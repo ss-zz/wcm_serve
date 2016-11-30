@@ -24,17 +24,14 @@ public class WebsitePubMgrController {
 	/**
 	 * 
 	 *
-	 * @param params1
-	 * 			参数1
-	 * @param params2
-	 * 			参数2
+	 * @param type
+	 * 			类型
 	 * @param pageParam
 	 * 			分页参数
 	 * @return
 	 */
 	@PostMapping("list")
-	public APIResult<PagingResult<TWcmWebsitePub>> getList(String params1,
-			String params2, PageParam pageParam) {
+	public APIResult<PagingResult<TWcmWebsitePub>> getList(String type,PageParam pageParam) {
 		return new APIResult<PagingResult<TWcmWebsitePub>>(
 				new PagingResult<TWcmWebsitePub>());
 	}
@@ -55,6 +52,7 @@ public class WebsitePubMgrController {
 	 * 删除页面
 	 *
 	 * @param id
+	 * 			id
 	 * @return
 	 */
 	@GetMapping("delete")

@@ -24,17 +24,14 @@ public class UserMgrController {
 	/**
 	 * 
 	 *
-	 * @param params1
-	 * 			参数1
-	 * @param params2
-	 * 			参数2
+	 * @param loginName
+	 * 			登录名
 	 * @param pageParam
 	 * 			分页参数
 	 * @return
 	 */
 	@PostMapping("list")
-	public APIResult<PagingResult<TWcmUser>> getList(String params1,
-			String params2, PageParam pageParam) {
+	public APIResult<PagingResult<TWcmUser>> getList(String loginName,PageParam pageParam) {
 		return new APIResult<PagingResult<TWcmUser>>(
 				new PagingResult<TWcmUser>());
 	}

@@ -27,17 +27,14 @@ public class TemplateMgrController {
 	/**
 	 * 
 	 *
-	 * @param params1
-	 * 			参数1
-	 * @param params2
-	 * 			参数2
+	 * @param name
+	 * 			模板名称
 	 * @param pageParam
 	 * 			分页参数
 	 * @return
 	 */
 	@PostMapping("list")
-	public APIResult<PagingResult<TWcmTemplate>> getList(String params1,
-			String params2, PageParam pageParam) {
+	public APIResult<PagingResult<TWcmTemplate>> getList(String name,PageParam pageParam) {
 		return new APIResult<PagingResult<TWcmTemplate>>(
 				new PagingResult<TWcmTemplate>());
 	}
