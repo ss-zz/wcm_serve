@@ -1,5 +1,7 @@
 package cn.com.sinosoft.wcm.web.manager;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,12 +17,18 @@ import cn.com.sinosoft.wcm.domain.wcm.TWcmFile;
 public class FileMgrController {
 	
 	
-	
 	/**
-	 * 普通分页查询
+	 * 
 	 *
+	 * @param params1
+	 * 			参数1
+	 * @param params2
+	 * 			参数2
+	 * @param pageParam
+	 * 			分页参数
 	 * @return
 	 */
+	@PostMapping("list")
 	public APIResult<PagingResult<TWcmFile>> getList(String params1,
 			String params2, PageParam pageParam) {
 		return new APIResult<PagingResult<TWcmFile>>(
@@ -31,8 +39,10 @@ public class FileMgrController {
 	 * 添加文件
 	 *
 	 * @param tFile
+	 * 			文件信息
 	 * @return
 	 */
+	@PostMapping("add")
 	public APIResult<String> addFile(TWcmFile tFile){
 		return new APIResult<>(ResultCode.SUCCESS.getCode(),"添加成功！");
 	}
@@ -40,9 +50,11 @@ public class FileMgrController {
 	/**
 	 * 删除文件
 	 *
-	 * @param tFile
+	 * @param id
+	 * 			id
 	 * @return
 	 */
+	@GetMapping("delete")
 	public APIResult<String> deleteFile(Integer id){
 		return new APIResult<>(ResultCode.SUCCESS.getCode(),"删除成功！");
 	}
@@ -51,8 +63,10 @@ public class FileMgrController {
 	 * 获取文件
 	 *
 	 * @param id
+	 * 			id
 	 * @return
 	 */
+	@GetMapping("get/detail")
 	public APIResult<TWcmFile> getFile(Integer id){
 		return new APIResult<TWcmFile>();
 	}
@@ -61,8 +75,10 @@ public class FileMgrController {
 	 * 修改文件
 	 *
 	 * @param tFile
+	 * 			文件信息
 	 * @return
 	 */
+	@PostMapping("edit")
 	public APIResult<String> updateFile(TWcmFile tFile){
 		return new APIResult<>(ResultCode.SUCCESS.getCode(),"修改成功！");
 	}

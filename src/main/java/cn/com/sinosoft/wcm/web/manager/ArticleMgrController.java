@@ -1,5 +1,7 @@
 package cn.com.sinosoft.wcm.web.manager;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,10 +22,17 @@ import cn.com.sinosoft.wcm.domain.wcm.TWcmArticle;
 public class ArticleMgrController {
 	
 	/**
-	 * 普通分页查询
+	 * 
 	 *
+	 * @param params1
+	 * 			参数1
+	 * @param params2
+	 * 			参数2
+	 * @param pageParam
+	 * 			分页参数
 	 * @return
 	 */
+	@PostMapping("list")
 	public APIResult<PagingResult<TWcmArticle>> getList(String params1,
 			String params2, PageParam pageParam) {
 		return new APIResult<PagingResult<TWcmArticle>>(
@@ -34,8 +43,10 @@ public class ArticleMgrController {
 	 * 添加文章
 	 *
 	 * @param tArticle
+	 * 			文章
 	 * @return
 	 */
+	@PostMapping("add")
 	public APIResult<String> addArticle(TWcmArticle tArticle){
 		return new APIResult<>(ResultCode.SUCCESS.getCode(),"添加成功！");
 	}
@@ -43,9 +54,11 @@ public class ArticleMgrController {
 	/**
 	 * 删除文章
 	 *
-	 * @param tArticle
+	 * @param id
+	 * 			id
 	 * @return
 	 */
+	@GetMapping("delete")
 	public APIResult<String> deleteArticle(Integer id){
 		return new APIResult<>(ResultCode.SUCCESS.getCode(),"删除成功！");
 	}
@@ -54,8 +67,10 @@ public class ArticleMgrController {
 	 * 获取文章信息
 	 *
 	 * @param id
+	 * 			id
 	 * @return
 	 */
+	@GetMapping("get/detail")
 	public APIResult<TWcmArticle> getArticle(Integer id){
 		return new APIResult<TWcmArticle>();
 	}
@@ -64,8 +79,10 @@ public class ArticleMgrController {
 	 * 修改文章信息
 	 *
 	 * @param tArticle
+	 * 			文章
 	 * @return
 	 */
+	@PostMapping("edit")
 	public APIResult<String> updateArticle(TWcmArticle tArticle){
 		return new APIResult<>(ResultCode.SUCCESS.getCode(),"修改成功！");
 	}
@@ -74,8 +91,10 @@ public class ArticleMgrController {
 	 * 设置文章所用到的资源（图片、视频等）
 	 *
 	 * @param id
+	 * 			id
 	 * @return
 	 */
+	@PostMapping("resource")
 	 public APIResult<String> setArticleResource(Integer id){
 		return new APIResult<>(ResultCode.SUCCESS.getCode(),"设置成功！");
 	}

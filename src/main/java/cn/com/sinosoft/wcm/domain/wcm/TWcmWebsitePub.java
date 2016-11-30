@@ -1,34 +1,25 @@
 package cn.com.sinosoft.wcm.domain.wcm;
 
-import java.text.DateFormat;
 import java.util.Date;
 
-public class TWcmArticle {
+public class TWcmWebsitePub {
+	
 	/**
-	 * 文章id
+	 * 站点发布表id
 	 */
 	private Integer id;
-	
-	/**
-	 * 栏目id
-	 */
-	private Integer channel_id;
-	
 	/**
 	 * 站点id
 	 */
 	private Integer website_id;
-	
 	/**
-	 * 文章标题
+	 * 发布类型
 	 */
-	private String title;
-	
+	private String type;
 	/**
-	 * 文章内容
+	 * 发布地址
 	 */
-	private String content;
-	
+	private String address;
 	/**
 	 * 创建时间
 	 */
@@ -48,60 +39,68 @@ public class TWcmArticle {
 	 * 更新人
 	 */
 	private String update_user;
-	
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getChannel_id() {
-		return channel_id;
-	}
-	public void setChannel_id(Integer channel_id) {
-		this.channel_id = channel_id;
-	}
+
 	public Integer getWebsite_id() {
 		return website_id;
 	}
+
 	public void setWebsite_id(Integer website_id) {
 		this.website_id = website_id;
 	}
-	public String getTitle() {
-		return title;
+
+	public String getType() {
+		return type;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+
+	public void setType(String type) {
+		this.type = type;
 	}
-	public String getContent() {
-		return content;
+
+	public String getAddress() {
+		return address;
 	}
-	public void setContent(String content) {
-		this.content = content;
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
+
 	public Date getCreate_time() {
 		return create_time;
 	}
+
 	public void setCreate_time(Date create_time) {
 		this.create_time = create_time;
 	}
+
 	public String getCreate_user() {
 		return create_user;
 	}
+
 	public void setCreate_user(String create_user) {
 		this.create_user = create_user;
 	}
+
 	public Date getUpdate_time() {
 		return update_time;
 	}
+
 	public void setUpdate_time(Date update_time) {
 		this.update_time = update_time;
 	}
+
 	public String getUpdate_user() {
 		return update_user;
 	}
+
 	public void setUpdate_user(String update_user) {
 		this.update_user = update_user;
 	}
-
 }

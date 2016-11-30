@@ -2,6 +2,8 @@ package cn.com.sinosoft.wcm.web.manager;
 
 import javax.annotation.Resource;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,10 +28,17 @@ public class WebSiteMgrController {
 	WebSiteService webSiteService;
 
 	/**
-	 * 普通分页查询
+	 * 
 	 *
+	 * @param params1
+	 * 			参数1
+	 * @param params2
+	 * 			参数2
+	 * @param pageParam
+	 * 			分页参数
 	 * @return
 	 */
+	@PostMapping("list")
 	public APIResult<PagingResult<TWcmWebsite>> getList(String params1,
 			String params2, PageParam pageParam) {
 		return new APIResult<PagingResult<TWcmWebsite>>(
@@ -40,8 +49,10 @@ public class WebSiteMgrController {
 	 * 添加站点
 	 *
 	 * @param tWebsite
+	 * 			站点信息
 	 * @return
 	 */
+	@PostMapping("add")
 	public APIResult<String> addWebsite(TWcmWebsite tWebsite){
 		return new APIResult<>(ResultCode.SUCCESS.getCode(),"添加成功！");
 	}
@@ -50,8 +61,10 @@ public class WebSiteMgrController {
 	 * 查看站点信息
 	 *
 	 * @param id
+	 *  	 	id
 	 * @return
 	 */
+	@GetMapping("detail")
 	public APIResult<TWcmWebsite> getDetail(Integer id){
 		return new APIResult<TWcmWebsite>();
 	}
@@ -60,8 +73,10 @@ public class WebSiteMgrController {
 	 * 修改站点信息
 	 *
 	 * @param tWebsite
+	 * 			站点信息
 	 * @return
 	 */
+	@PostMapping("edit")
 	public APIResult<String> updateWebsite(TWcmWebsite tWebsite){
 		return new APIResult<>(ResultCode.SUCCESS.getCode(),"修改成功！");
 	}
@@ -70,8 +85,10 @@ public class WebSiteMgrController {
 	 * 删除站点
 	 *
 	 * @param id
+	 * 			id
 	 * @return
 	 */
+	@GetMapping("delete")
 	public APIResult<String> deleteWebsite(Integer id){
 		return new APIResult<>(ResultCode.SUCCESS.getCode(),"删除成功！");
 	}
@@ -80,8 +97,10 @@ public class WebSiteMgrController {
 	 * 站点设置首页模板
 	 *
 	 * @param id
+	 * 			模板id-首页
 	 * @return
 	 */
+	@GetMapping("index")
 	public APIResult<String> setWebsiteTemplate(Integer id){
 		return new APIResult<>(ResultCode.SUCCESS.getCode(),"设置成功！");
 	} 

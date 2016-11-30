@@ -1,5 +1,7 @@
 package cn.com.sinosoft.wcm.web.manager;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,10 +22,17 @@ import cn.com.sinosoft.wcm.domain.wcm.TWcmUser;
 public class UserMgrController {
 	
 	/**
-	 * 普通分页查询
+	 * 
 	 *
+	 * @param params1
+	 * 			参数1
+	 * @param params2
+	 * 			参数2
+	 * @param pageParam
+	 * 			分页参数
 	 * @return
 	 */
+	@PostMapping("list")
 	public APIResult<PagingResult<TWcmUser>> getList(String params1,
 			String params2, PageParam pageParam) {
 		return new APIResult<PagingResult<TWcmUser>>(
@@ -34,8 +43,10 @@ public class UserMgrController {
 	 * 添加用户
 	 *
 	 * @param tUser
+	 * 			用户信息
 	 * @return
 	 */
+	@PostMapping("add")
 	public APIResult<String> addUser(TWcmUser tUser){
 		return new APIResult<>(ResultCode.SUCCESS.getCode(),"添加成功！");
 	}
@@ -43,9 +54,11 @@ public class UserMgrController {
 	/**
 	 * 删除用户
 	 *
-	 * @param tUser
+	 * @param id 
+	 * 			id
 	 * @return
 	 */
+	@GetMapping("delete")
 	public APIResult<String> deleteUser(Integer id){
 		return new APIResult<>(ResultCode.SUCCESS.getCode(),"删除成功！");
 	}
@@ -54,8 +67,10 @@ public class UserMgrController {
 	 * 获取登录用户信息
 	 *
 	 * @param loginName
+	 * 			登录名
 	 * @return
 	 */
+	@PostMapping("get/detail")
 	public APIResult<TWcmUser> getUser(String loginName){
 		return new APIResult<TWcmUser>();
 	}
@@ -64,8 +79,10 @@ public class UserMgrController {
 	 * 修改用户信息
 	 *
 	 * @param tUser
+	 * 			用户信息
 	 * @return
 	 */
+	@PostMapping("edit")
 	public APIResult<String> updateUser(TWcmUser tUser){
 		return new APIResult<>(ResultCode.SUCCESS.getCode(),"修改成功！");
 	}
@@ -74,9 +91,12 @@ public class UserMgrController {
 	 * 修改用户密码
 	 *
 	 * @param oldPwd
+	 * 			旧密码
 	 * @param newPwd
+	 * 			新密码
 	 * @return
 	 */
+	@PostMapping("update/pass")
 	public APIResult<String> updateUserPwd(String oldPwd, String newPwd){
 		return new APIResult<>(ResultCode.SUCCESS.getCode(),"修改成功！");
 	} 
@@ -85,8 +105,10 @@ public class UserMgrController {
 	 * 修改用户权限
 	 *
 	 * @param state
+	 * 			用户权限
 	 * @return
 	 */
+	@PostMapping("state")
 	public APIResult<String> updateUserLimit(String state){
 		return new APIResult<>(ResultCode.SUCCESS.getCode(),"修改成功！");
 	} 
