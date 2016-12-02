@@ -5,4 +5,89 @@
 <!-- 网站 -->
 <mapper namespace="cn.com.sinosoft.wcm.website">
 
+	<!-- 站点列表 -->
+	<select id="Website_List" resultType="cn.com.sinosoft.wcm.domain.wcm.TWcmWebsite">
+		select 
+			t.id  		id,
+			t.name 		name,
+			t.alias     alias,
+			t.describe  `describe`,
+			t.templates_id_index    templates_id_index,
+			t.use_state use_state,
+			t.pub_state  pub_state,
+			t.pub_time   pub_time,
+			t.pub_user   pub_user,
+			t.create_time create_time,
+			t.create_user create_user,
+			t.update_time update_time,
+			t.update_user update_user
+		 from t_wcm_website t
+		where 1=1
+		<if test="name != null">
+			and t.name=#{name}
+		</if>
+		<if test="alias != null">
+			and t.alias=#{alias}
+		</if>
+	</select>
+	
+	<!-- 添加站点 -->
+	<insert id="Add_Website">
+		insert into t_wcm_website(name,alias,`describe`,templates_id_index,
+		pub_state,create_time,create_user) values(#{name},#{alias},#{describe},
+		#{templates_id_index},#{pub_state},#{create_time},#{create_user})
+	</insert>
+	
+	<!-- 查询所有的站点名称 -->
+	<select id="Select_Website_Name" resultType="Integer">
+		select count(1) as count from 
+		(select name as WebsiteName from t_wcm_website) s 
+		where s.WebsiteName=#{name}
+	</select>
+	
+	<!-- 修改站点信息 -->
+	<update id="Update_Website">
+		update t_wcm_website set name=#{name},alias=#{alias},
+			`describe`=#{describe},templates_id_index=#{templates_id_index},
+			update_time=#{update_time},update_user=#{update_user}
+			where id=#{id}
+	</update>
+	
+	<!-- 获取站点信息 -->
+	<select id="Website_Detail" resultType="cn.com.sinosoft.wcm.domain.wcm.TWcmWebsite">
+		select
+			t.name 		name,
+			t.alias     alias,
+			t.describe  `describe`,
+			t.templates_id_index   template_id_index
+		 from t_wcm_website t
+		 where t.id=#{id}
+	</select>
+	
+	<!-- 站点发布  -->
+	<update id="Update_Website_Pub">
+		update t_wcm_website set 
+			pub_state=#{pub_state},pub_time=#{pub_time},pub_user=#{pub_user}
+		where id=#{id}
+	</update>
+	
+	<!-- 站点使用状态 -->
+	<update id="Update_Website_Use">
+		update t_wcm_website set 
+			use_state=#{use_state}
+		where id=#{id}
+	</update>
+	
+	<!-- 删除站点 -->
+	<delete id="Delete_Website">
+		delete from t_wcm_website where id=#{id}
+	</delete>
+	
+	<!-- 站点首页模板设置 -->
+	<update id="Set_Website_Templates">
+		update t_wcm_website set 
+			templates_id_index=#{templates_id_index}
+		where id=#{id}
+	</update>
+	
 </mapper>
