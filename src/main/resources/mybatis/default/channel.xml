@@ -1,0 +1,141 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- 栏目 -->
+<mapper namespace="cn.com.sinosoft.wcm.channel">
+	
+	<!-- 栏目列表 -->
+	<select id="Channel_List" resultType="cn.com.sinosoft.wcm.domain.wcm.TWcmChannel">
+		select
+			t.id			id,
+			t.parent_id		parentId,
+			t.website_id	websiteId,
+			t.name 			name,
+			t.alias			alias,
+			t.type			type,
+			t.content_type	contentType,
+			t.describe		`describe`,
+			t.logo			logo,
+			t.templates_id_index  templatesIdIndex,
+			t.templates_id_list	  templatesIdList,
+			t.templates_id_detail  templatesIdDetail,
+			t.list_documents		listDocuments,
+			t.list_pages			listPages,
+			t.use_state		useState,
+			t.pub_state		pubState,
+			t.pub_time		pubTime,
+			t.pub_user		pubUser,
+			t.create_time   createTime,
+			t.create_user	createUser,
+			t.update_time	updateTime,
+			t.update_user	updateUser
+		from t_wcm_channel t
+		where 1=1
+		<if test="websiteId != null">
+			and t.website_id=#{websiteId}
+		</if>
+		<if test="name != null">
+			and t.name=#{name}
+		</if>
+		<if test="alias != null">
+			and t.alias=#{alias}
+		</if>
+	</select>
+	
+	<!-- 新建栏目 -->
+	<insert id="Channel_Add">
+		insert into t_wcm_channel(parent_id,website_id,name,alias,type,content_type,`describe`,
+		logo,templates_id_index,templates_id_list,templates_id_detail,list_documents,list_pages,
+		pub_state,create_time,create_user) 
+		values(#{parentId},#{websiteId},#{name},#{alias},#{type},#{contentType},#{describe},
+		#{logo},#{templatesIdIndex},#{templatesIdList},#{templatesIdDetail},#{listDocuments},
+		#{listPages},#{pubState},#{createTime},#{createUser})
+	</insert>
+	
+	<!-- 根据栏目名称查询该栏目名称的数目  -->
+	<select id="Channel_Name_Select" resultType="Integer">
+		select count(1) as count from t_wcm_channel s 
+		where s.name=#{name}
+	</select>
+	
+	<!-- 更新栏目发布 状态 -->
+	<update id="Channel_Pub_Update">
+		update t_wcm_channel set 
+			pub_state=#{pubState},pub_time=#{pubTime},pub_user=#{pubUser}
+		where id=#{id}
+	</update>
+	
+	<!-- 更新栏目使用状态 -->
+	<update id="Channel_Use_Update">
+		update t_wcm_channel set 
+			use_state=#{useState}
+		where id=#{id}
+	</update>
+	
+	<!-- 根据id获取栏目详细信息 -->
+	<select id="Channel_Detail" resultType="cn.com.sinosoft.wcm.domain.wcm.TWcmChannel">
+		select
+			t.id			id,
+			t.parent_id		parentId,
+			t.website_id	websiteId,
+			t.name 			name,
+			t.alias			alias,
+			t.type			type,
+			t.content_type	contentType,
+			t.describe		`describe`,
+			t.logo			logo,
+			t.templates_id_index  templatesIdIndex,
+			t.templates_id_list	  templatesIdList,
+			t.templates_id_detail  templatesIdDetail,
+			t.list_documents		listDocuments,
+			t.list_pages			listPages,
+			t.use_state		useState,
+			t.pub_state		pubState,
+			t.pub_time		pubTime,
+			t.pub_user		pubUser,
+			t.create_time   createTime,
+			t.create_user	createUser,
+			t.update_time	updateTime,
+			t.update_user	updateUser
+		from t_wcm_channel t
+		where t.id=#{id}
+	</select>
+	
+	<!-- 根据id修改栏目信息 -->
+	<update id="Channel_Update">
+		update t_wcm_channel set parent_id=#{parentId},website_id=#{websiteId},name=#{name},
+			alias=#{alias},type=#{type},content_type=#{contentType},`describe`=#{describe},
+			logo=#{logo},templates_id_index=#{templatesIdIndex},templates_id_list=#{templatesIdList},
+			templates_id_detail=#{templatesIdDetail},list_documents=#{listDocuments},list_pages=#{listPages},
+			update_time=#{updateTime},update_user=#{updateUser}
+			where id=#{id}
+	</update>
+	
+	<!-- 根据id删除栏目 -->
+	<delete id="Channel_Delete">
+		delete from t_wcm_channel where id=#{id}
+	</delete>
+	
+	<!-- 栏目模板设置-首页 -->
+	<update id="Channel_Templates_Index_Set">
+		update t_wcm_channel set 
+			templates_id_index=#{templatesIdIndex}
+		where id=#{id}
+	</update>
+	
+	<!-- 栏目模板设置-列表页 -->
+	<update id="Channel_Templates_List_Set">
+		update t_wcm_channel set 
+			templates_id_list=#{templatesIdList}
+		where id=#{id}
+	</update>
+	
+	<!-- 栏目模板设置-详情页 -->
+	<update id="Channel_Templates_Detail_Set">
+		update t_wcm_channel set 
+			templates_id_detail=#{templatesIdDetail}
+		where id=#{id}
+	</update>
+	
+</mapper>

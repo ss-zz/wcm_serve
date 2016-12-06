@@ -1,9 +1,11 @@
 package cn.com.sinosoft.wcm.service.website;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 import javax.annotation.Resource;
 
@@ -53,11 +55,20 @@ public class WebSiteService {
 	 * @param name
 	 * 			站点名称
 	 * @return 
-	 * @return
 	 */
-	public List<Integer> getWebsiteName(String name){
-		List<Integer> count=baseDao.queryList(NAMESPACE_BASE +"Select_Website_Name", name);
-		return count.size()>0 ? count :null;
+	public boolean getWebsiteName(String name){
+		List<Integer> count=baseDao.queryList(NAMESPACE_BASE +"Website_Name_Select", name);
+		if(count.size()>0){
+			if(count.get(0)>0){
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			return false;
+		}
 	}
 	
 	/**
@@ -70,10 +81,12 @@ public class WebSiteService {
 	public int addWebsite(TWcmWebsite tWebsite){
 		
 		//设置创建站点的时间
-		tWebsite.setCreate_time(new Date());
+		tWebsite.setCreateTime(new Date());
 		//设置发布状态(1表示未发布)
-		tWebsite.setPub_state("1");
-		int m=baseDao.insert(NAMESPACE_BASE +"Add_Website",tWebsite);
+		tWebsite.setPubState("1");
+		//设置创建人
+		tWebsite.setCreateUser(baseDao.getUserUtil().getRequestUserLoginName());
+		int m=baseDao.insert(NAMESPACE_BASE +"Website_Add",tWebsite);
 		return m;
 	}
 	
@@ -98,8 +111,10 @@ public class WebSiteService {
 	 */
 	public int updateWebsite(TWcmWebsite tWebsite){
 		//设置站点更新时间
-		tWebsite.setUpdate_time(new Date());
-		int m=baseDao.update(NAMESPACE_BASE +"Update_Website", tWebsite);
+		tWebsite.setUpdateTime(new Date());
+		//设置修改人
+		tWebsite.setUpdateUser(baseDao.getUserUtil().getRequestUserLoginName());
+		int m=baseDao.update(NAMESPACE_BASE +"Website_Update", tWebsite);
 		return m;
 	}
 	
@@ -111,35 +126,50 @@ public class WebSiteService {
 	 * @return
 	 */
 	public int deleteWebsite(Integer id){
-		int m=baseDao.delete(NAMESPACE_BASE +"Delete_Website", id);
+		int m=baseDao.delete(NAMESPACE_BASE +"Website_Delete", id);
 		return m;
 	}
 	
 	/**
 	 * 发布站点
 	 *
-	 * @param tWebsite
-	 * 			设置站点发布状态、发布人、发布时间
+	 * @param id
+	 * 			站点id
+	 * @param pubUser
+	 * 			发布人
 	 * @return
 	 */
-	public int updateWebsitePub(TWcmWebsite tWebsite){
+	public int updateWebsitePub(Integer id){
 		//设置发布时间
-		tWebsite.setPub_time(new Date());
-		//设置发布状态
-		tWebsite.setPub_state("2");
-		int m=baseDao.update(NAMESPACE_BASE +"Update_Website_Pub", tWebsite);
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String pubTime=sdf.format(new Date());
+		//设置发布状态(2表示发布)
+		String pubState="2";
+		//设置发布人
+		String pubUser=baseDao.getUserUtil().getRequestUserLoginName();
+		Map<String,Object> params=new HashMap<String,Object>();
+		params.put("id", id);
+		params.put("pubUser", pubUser);
+		params.put("pubTime", pubTime);
+		params.put("pubState", pubState);
+		int m=baseDao.update(NAMESPACE_BASE +"Website_Pub_Update", params);
 		return m;
 	}
 	
 	/**
-	 * 站点使用状态
+	 * 更新站点使用状态
 	 *
-	 * @param tWebsite
-	 * 			设置站点使用状态
+	 * @param id
+	 * 			站点id
+	 * @param useState
+	 * 			站点使用状态
 	 * @return
 	 */
-	public int updateWebsiteUse(TWcmWebsite tWebsite){
-		int m=baseDao.update(NAMESPACE_BASE +"Update_Website_Use", tWebsite);
+	public int updateWebsiteUse(Integer id,String useState){
+		Map<String,Object> params=new HashMap<String,Object>();
+		params.put("id", id);
+		params.put("useState", useState);
+		int m=baseDao.update(NAMESPACE_BASE +"Website_Use_Update", params);
 		return m;
 	}
 	
@@ -148,15 +178,15 @@ public class WebSiteService {
 	 *
 	 * @param id
 	 * 			站点id
-	 * @param templates_id_index
+	 * @param templatesId
 	 * 			模板id
 	 * @return
 	 */
-	public int setWebsiteTemplates(Integer id,Integer templates_id_index){
+	public int setWebsiteTemplates(Integer id,Integer templatesId){
 		Map<String, Object> params=new HashMap<String,Object>();
 		params.put("id", id);
-		params.put("templates_id_index", templates_id_index);
-		int m=baseDao.update(NAMESPACE_BASE +"Set_Website_Templates", params);
+		params.put("templatesId", templatesId);
+		int m=baseDao.update(NAMESPACE_BASE +"Website_Templates_Set", params);
 		return m;
 	}
 

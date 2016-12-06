@@ -2,6 +2,8 @@ package cn.com.sinosoft.tbf.common.security;
 
 import java.util.Collection;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -11,7 +13,9 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
+import cn.com.sinosoft.tbf.domain.common.security.UserInfo;
 import cn.com.sinosoft.tbf.util.UserService;
+import cn.com.sinosoft.tbf.util.UserUtil;
 
 /**
  * 自定义认证
@@ -24,6 +28,8 @@ public class AuthenticationProviderCustom implements AuthenticationProvider {
 
 	@Autowired
 	private UserService userServcie;
+	@Autowired
+	HttpServletRequest request;
 
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -32,7 +38,10 @@ public class AuthenticationProviderCustom implements AuthenticationProvider {
 		// 密码
 		String passWord = String.valueOf(authentication.getCredentials());
 		// 验证
-		if (userServcie.validUser(userName, passWord)) {
+		UserInfo userInfo = userServcie.getUserBaseInfo(userName, passWord);
+		if (userInfo != null) {
+			request.getSession().setAttribute(UserUtil.SESSION_NAME_USERINFO, userInfo);
+			
 			// 授权
 			Collection<? extends GrantedAuthority> authorities = null;
 			return new UsernamePasswordAuthenticationToken(userName, passWord, authorities);

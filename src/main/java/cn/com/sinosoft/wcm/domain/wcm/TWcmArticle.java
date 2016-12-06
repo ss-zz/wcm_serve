@@ -1,6 +1,5 @@
 package cn.com.sinosoft.wcm.domain.wcm;
 
-import java.text.DateFormat;
 import java.util.Date;
 
 public class TWcmArticle {

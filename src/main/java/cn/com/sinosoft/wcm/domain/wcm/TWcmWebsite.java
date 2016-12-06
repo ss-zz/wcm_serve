@@ -33,46 +33,46 @@ public class TWcmWebsite {
 	/**
 	 * 栏目模板id-首页
 	 */
-	private Integer templates_id_index;
+	private Integer templatesId;
 	
 	/**
 	 * 站点使用状态
 	 */
-	private String use_state;
+	private String useState;
 	
 	/**
 	 * 站点发布状态
 	 */
-	private String pub_state;
+	private String pubState;
 	
 	/**
 	 * 站点发布时间
 	 */
-	private Date pub_time;
+	private Date pubTime;
 	
 	/**
 	 * 发布人
 	 */
-	private String pub_user;
+	private String pubUser;
 	/**
 	 * 创建时间
 	 */
-	private Date create_time;
+	private Date createTime;
 	
 	/**
 	 * 创建人
 	 */
-	private String create_user;
+	private String createUser;
 	
 	/**
 	 * 更新时间
 	 */
-	private Date update_time;
+	private Date updateTime;
 	
 	/**
 	 * 更新人
 	 */
-	private String update_user;
+	private String updateUser;
 
 	public Integer getId() {
 		return id;
@@ -106,78 +106,76 @@ public class TWcmWebsite {
 		this.describe = describe;
 	}
 
-	public Integer getTemplates_id_index() {
-		return templates_id_index;
+	public Integer getTemplatesId() {
+		return templatesId;
 	}
 
-	public void setTemplates_id_index(Integer templates_id_index) {
-		this.templates_id_index = templates_id_index;
+	public void setTemplatesId(Integer templatesId) {
+		this.templatesId = templatesId;
 	}
 
-	public String getUse_state() {
-		return use_state;
+	public String getUseState() {
+		return useState;
 	}
 
-	public void setUse_state(String use_state) {
-		this.use_state = use_state;
+	public void setUseState(String useState) {
+		this.useState = useState;
 	}
 
-	public String getPub_state() {
-		return pub_state;
+	public String getPubState() {
+		return pubState;
 	}
 
-	public void setPub_state(String pub_state) {
-		this.pub_state = pub_state;
+	public void setPubState(String pubState) {
+		this.pubState = pubState;
 	}
 
-	public Date getPub_time() {
-		return pub_time;
+	public Date getPubTime() {
+		return pubTime;
 	}
 
-	public void setPub_time(Date pub_time) {
-		this.pub_time = pub_time;
+	public void setPubTime(Date pubTime) {
+		this.pubTime = pubTime;
 	}
 
-	public String getPub_user() {
-		return pub_user;
+	public String getPubUser() {
+		return pubUser;
 	}
 
-	public void setPub_user(String pub_user) {
-		this.pub_user = pub_user;
+	public void setPubUser(String pubUser) {
+		this.pubUser = pubUser;
 	}
 
-	public Date getCreate_time() {
-		return create_time;
+	public Date getCreateTime() {
+		return createTime;
 	}
 
-	public void setCreate_time(Date create_time) {
-		this.create_time = create_time;
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 
-	public String getCreate_user() {
-		return create_user;
+	public String getCreateUser() {
+		return createUser;
 	}
 
-	public void setCreate_user(String create_user) {
-		this.create_user = create_user;
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
 	}
 
-	public Date getUpdate_time() {
-		return update_time;
+	public Date getUpdateTime() {
+		return updateTime;
 	}
 
-	public void setUpdate_time(Date update_time) {
-		this.update_time = update_time;
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
 	}
 
-	public String getUpdate_user() {
-		return update_user;
+	public String getUpdateUser() {
+		return updateUser;
 	}
 
-	public void setUpdate_user(String update_user) {
-		this.update_user = update_user;
+	public void setUpdateUser(String updateUser) {
+		this.updateUser = updateUser;
 	}
-
-	
 	
 }

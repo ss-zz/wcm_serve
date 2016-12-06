@@ -11,12 +11,12 @@ public class TWcmChannel {
 	/**
 	 * 父栏目id
 	 */
-	private Integer parent_id;
+	private Integer parentId;
 	
 	/**
 	 * 站点id
 	 */
-	private Integer website_id;
+	private Integer websiteId;
 	
 	/**
 	 * 栏目名称
@@ -36,7 +36,7 @@ public class TWcmChannel {
 	/**
 	 *栏目内容类型
 	 */
-	private String content_type;
+	private String contentType;
 	
 	/**
 	 * 栏目描述
@@ -51,68 +51,68 @@ public class TWcmChannel {
 	/**
 	 * 栏目模板id-首页
 	 */
-	private Integer templates_id_index;
+	private Integer templatesIdIndex;
 	
 	/**
 	 * 栏目模板id-列表页
 	 */
-	private Integer templates_id_list;
+	private Integer templatesIdList;
 	
 	/**
 	 * 栏目模板id-详细页
 	 */
-	private Integer templates_id_detail;
+	private Integer templatesIdDetail;
 	
 	/**
 	 * 列表页文档数
 	 */
-	private Integer list_documnets;
+	private Integer listDocuments;
 	
 	/**
 	 * 列表页最大更新分页数
 	 */
-	private Integer list_pages;
+	private Integer listPages;
 	
 	/**
 	 * 栏目使用状态
 	 */
-	private String use_state;
+	private String useState;
 	
 	/**
 	 * 栏目发布状态
 	 */
-	private String pub_state;
+	private String pubState;
 	
 	/**
 	 * 栏目发布时间
 	 */
-	private Date pub_time;
+	private Date pubTime;
 	
 	/**
 	 * 栏目发布人
 	 */
-	private String pub_user;
+	private String pubUser;
 	
 	/**
 	 * 创建时间
 	 */
-	private Date create_time;
+	private Date createTime;
 	
 	/**
 	 * 创建人
 	 */
-	private String create_user;
+	private String createUser;
 	
 	/**
 	 * 更新时间
 	 */
-	private Date update_time;
+	private Date updateTime;
 	
 	/**
 	 * 更新人
 	 */
-	private String update_user;
-	
+	private String updateUser;
+
 	public Integer getId() {
 		return id;
 	}
@@ -121,20 +121,20 @@ public class TWcmChannel {
 		this.id = id;
 	}
 
-	public Integer getParent_id() {
-		return parent_id;
+	public Integer getParentId() {
+		return parentId;
 	}
 
-	public void setParent_id(Integer parent_id) {
-		this.parent_id = parent_id;
+	public void setParentId(Integer parentId) {
+		this.parentId = parentId;
 	}
 
-	public Integer getWebsite_id() {
-		return website_id;
+	public Integer getWebsiteId() {
+		return websiteId;
 	}
 
-	public void setWebsite_id(Integer website_id) {
-		this.website_id = website_id;
+	public void setWebsiteId(Integer websiteId) {
+		this.websiteId = websiteId;
 	}
 
 	public String getName() {
@@ -161,12 +161,12 @@ public class TWcmChannel {
 		this.type = type;
 	}
 
-	public String getContent_type() {
-		return content_type;
+	public String getContentType() {
+		return contentType;
 	}
 
-	public void setContent_type(String content_type) {
-		this.content_type = content_type;
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
 	}
 
 	public String getDescribe() {
@@ -185,108 +185,108 @@ public class TWcmChannel {
 		this.logo = logo;
 	}
 
-	public Integer getTemplates_id_index() {
-		return templates_id_index;
+	public Integer getTemplatesIdIndex() {
+		return templatesIdIndex;
 	}
 
-	public void setTemplates_id_index(Integer templates_id_index) {
-		this.templates_id_index = templates_id_index;
+	public void setTemplatesIdIndex(Integer templatesIdIndex) {
+		this.templatesIdIndex = templatesIdIndex;
 	}
 
-	public Integer getTemplates_id_list() {
-		return templates_id_list;
+	public Integer getTemplatesIdList() {
+		return templatesIdList;
 	}
 
-	public void setTemplates_id_list(Integer templates_id_list) {
-		this.templates_id_list = templates_id_list;
+	public void setTemplatesIdList(Integer templatesIdList) {
+		this.templatesIdList = templatesIdList;
 	}
 
-	public Integer getTemplates_id_detail() {
-		return templates_id_detail;
+	public Integer getTemplatesIdDetail() {
+		return templatesIdDetail;
 	}
 
-	public void setTemplates_id_detail(Integer templates_id_detail) {
-		this.templates_id_detail = templates_id_detail;
+	public void setTemplatesIdDetail(Integer templatesIdDetail) {
+		this.templatesIdDetail = templatesIdDetail;
 	}
 
-	public Integer getList_documnets() {
-		return list_documnets;
+	public Integer getListDocuments() {
+		return listDocuments;
 	}
 
-	public void setList_documnets(Integer list_documnets) {
-		this.list_documnets = list_documnets;
+	public void setListDocuments(Integer listDocuments) {
+		this.listDocuments = listDocuments;
 	}
 
-	public Integer getList_pages() {
-		return list_pages;
+	public Integer getListPages() {
+		return listPages;
 	}
 
-	public void setList_pages(Integer list_pages) {
-		this.list_pages = list_pages;
+	public void setListPages(Integer listPages) {
+		this.listPages = listPages;
 	}
 
-	public String getUse_state() {
-		return use_state;
+	public String getUseState() {
+		return useState;
 	}
 
-	public void setUse_state(String use_state) {
-		this.use_state = use_state;
+	public void setUseState(String useState) {
+		this.useState = useState;
 	}
 
-	public String getPub_state() {
-		return pub_state;
+	public String getPubState() {
+		return pubState;
 	}
 
-	public void setPub_state(String pub_state) {
-		this.pub_state = pub_state;
+	public void setPubState(String pubState) {
+		this.pubState = pubState;
 	}
 
-	public Date getPub_time() {
-		return pub_time;
+	public Date getPubTime() {
+		return pubTime;
 	}
 
-	public void setPub_time(Date pub_time) {
-		this.pub_time = pub_time;
+	public void setPubTime(Date pubTime) {
+		this.pubTime = pubTime;
 	}
 
-	public String getPub_user() {
-		return pub_user;
+	public String getPubUser() {
+		return pubUser;
 	}
 
-	public void setPub_user(String pub_user) {
-		this.pub_user = pub_user;
+	public void setPubUser(String pubUser) {
+		this.pubUser = pubUser;
 	}
 
-	public Date getCreate_time() {
-		return create_time;
+	public Date getCreateTime() {
+		return createTime;
 	}
 
-	public void setCreate_time(Date create_time) {
-		this.create_time = create_time;
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 
-	public String getCreate_user() {
-		return create_user;
+	public String getCreateUser() {
+		return createUser;
 	}
 
-	public void setCreate_user(String create_user) {
-		this.create_user = create_user;
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
 	}
 
-	public Date getUpdate_time() {
-		return update_time;
+	public Date getUpdateTime() {
+		return updateTime;
 	}
 
-	public void setUpdate_time(Date update_time) {
-		this.update_time = update_time;
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
 	}
 
-	public String getUpdate_user() {
-		return update_user;
+	public String getUpdateUser() {
+		return updateUser;
 	}
 
-	public void setUpdate_user(String update_user) {
-		this.update_user = update_user;
+	public void setUpdateUser(String updateUser) {
+		this.updateUser = updateUser;
 	}
 
 }

@@ -1,6 +1,5 @@
 package cn.com.sinosoft.wcm.web.manager;
 
-import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -47,47 +46,35 @@ public class WebSiteMgrController {
 		return new APIResult<PagingResult<TWcmWebsite>>(result);
 	}
 	
-	/**
-	 * 查询站点名称是否存在
-	 *
-	 * @param name
-	 * 			站点名称
-	 * @return
-	 */
-	@GetMapping("getWebsiteName")
-	public APIResult<String> isWebsiteName(String name){
-		List<Integer> count=webSiteService.getWebsiteName(name);
-		if(count.get(0)>0){
-			return new APIResult<String>(ResultCode.SUCCESS.getCode(),"站点已存在，请重新输入");
-		}
-		else{
-			return new APIResult<String>(ResultCode.SUCCESS.getCode(),"站点名称可用");
-		}
-	}
 	
 	/**
 	 * 添加站点
 	 *
 	 * @param tWebsite
-	 * 			站点信息（名称、别名、描述、模板id、创建人）
+	 * 			站点信息
 	 * @return
 	 */
 	@PostMapping("add")
 	public APIResult<String> addWebsite(TWcmWebsite tWebsite){
-		int m=webSiteService.addWebsite(tWebsite);
-		if(m>0){
-			return new APIResult<>(ResultCode.SUCCESS.getCode(),"添加成功");
+		if(webSiteService.getWebsiteName(tWebsite.getName())){
+			return new APIResult<>(ResultCode.SUCCESS.getCode(),"该站点名已存在");
 		}
 		else{
-			return new APIResult<>(ResultCode.FAILURE.getCode(),"添加失败");
+			int m=webSiteService.addWebsite(tWebsite);
+			if(m>0){
+				return new APIResult<>(ResultCode.SUCCESS.getCode(),"添加成功");
+			}
+			else {
+				return new APIResult<>(ResultCode.FAILURE.getCode(),"添加失败");
+			}
 		}
 	}
 	
 	/**
-	 * 查看站点信息
+	 * 根据id获取站点详细信息
 	 *
 	 * @param id
-	 *  	 	id
+	 *  	 	站点id
 	 * @return
 	 */
 	@GetMapping("detail")
@@ -99,7 +86,7 @@ public class WebSiteMgrController {
 	 * 修改站点信息
 	 *
 	 * @param tWebsite
-	 * 			站点信息（名称、别名、描述、模板id、更新人、站点id）
+	 * 			站点信息
 	 * @return
 	 */
 	@PostMapping("edit")
@@ -117,7 +104,7 @@ public class WebSiteMgrController {
 	 * 删除站点
 	 *
 	 * @param id
-	 * 			id
+	 * 			站点id
 	 * @return
 	 */
 	@GetMapping("delete")
@@ -132,15 +119,15 @@ public class WebSiteMgrController {
 	}
 	
 	/**
-	 * 设置站点的发布状态
+	 * 站点发布
 	 *
-	 * @param tWebsite
-	 * 			id、发布人
+	 * @param id
+	 * 			站点id
 	 * @return
 	 */
-	@PostMapping("websitePub")
-	public APIResult<String> updateWebsitePub(TWcmWebsite tWebsite){
-		int m=webSiteService.updateWebsitePub(tWebsite);
+	@PostMapping("pubWebsite")
+	public APIResult<String> updateWebsitePub(Integer id){
+		int m=webSiteService.updateWebsitePub(id);
 		if(m>0){
 			return new APIResult<>(ResultCode.SUCCESS.getCode(),"发布成功");
 		}
@@ -150,20 +137,22 @@ public class WebSiteMgrController {
 	}
 	
 	/**
-	 * 设置站点的使用状态
+	 * 更新站点的使用状态
 	 *
-	 * @param tWebsite
-	 * 			id、站点使用状态
+	 * @param id
+	 * 			站点id
+	 * @param useState
+	 * 			使用状态
 	 * @return
 	 */
-	@PostMapping("websiteUse")
-	public APIResult<String> updateWebsiteUse(TWcmWebsite tWebsite){
-		int m=webSiteService.updateWebsiteUse(tWebsite);
+	@PostMapping("useWebsite")
+	public APIResult<String> updateWebsiteUse(Integer id,String useState){
+		int m=webSiteService.updateWebsiteUse(id,useState);
 		if(m>0){
-			return new APIResult<>(ResultCode.SUCCESS.getCode(),"该站点正在使用");
+			return new APIResult<>(ResultCode.SUCCESS.getCode(),"使用状态更新成功");
 		}
 		else {
-			return new APIResult<>(ResultCode.SUCCESS.getCode(),"该站点可使用");
+			return new APIResult<>(ResultCode.SUCCESS.getCode(),"使用状态更新失败");
 		}
 	}
 	
@@ -172,13 +161,13 @@ public class WebSiteMgrController {
 	 *
 	 * @param id
 	 * 			站点id
-	 * @param templates_id_index
+	 * @param templatesId
 	 * 			模板id-首页
 	 * @return
 	 */
-	@GetMapping("index")
-	public APIResult<String> setWebsiteTemplate(Integer id,Integer templates_id_index){
-		int m=webSiteService.setWebsiteTemplates(id, templates_id_index);
+	@GetMapping("setTemplates")
+	public APIResult<String> setWebsiteTemplate(Integer id,Integer templatesId){
+		int m=webSiteService.setWebsiteTemplates(id, templatesId);
 		if(m>0){
 			return new APIResult<>(ResultCode.SUCCESS.getCode(),"模板设置成功");
 		}
