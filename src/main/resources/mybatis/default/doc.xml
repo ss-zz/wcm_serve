@@ -1,0 +1,68 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- 文章管理 -->
+<mapper namespace="cn.com.sinosoft.wcm.doc">
+	
+	<!-- 文章列表 -->
+	<select id="Doc_List_Get" resultType="cn.com.sinosoft.wcm.domain.wcm.TWcmArticle">
+		select 
+			t.id		id,
+			t.channel_id	channelId,
+			t.website_id	websiteId,
+			t.title		title,
+			t.content	content,
+			t.create_time	createTime,
+			t.create_user	createUser,
+			t.update_time	updateTime,
+			t.update_user	updateUser
+		from t_wcm_doc t
+		where 1=1
+		<if test="channelId != null">
+			and t.channel_id=#{channelId}
+		</if>
+		<if test="websiteId != null">
+			and t.website_id=#{websiteId}
+		</if>
+		<if test="title != null">
+			and t.title like CONCAT('%',#{title},'%')				
+		</if>
+	</select>
+	
+	<!-- 添加文章 -->
+	<insert id="Doc_Add">
+		insert into t_wcm_doc(channel_id,website_id,title,content,create_time,create_user)
+		values(#{channelId},#{websiteId},#{title},#{content},#{createTime},#{createUser})
+	</insert>
+	
+	<!-- 修改文章 -->
+	<update id="Doc_Update">
+		update t_wcm_doc set  
+			channel_id=#{channelId},website_id=#{websiteId},title=#{title},
+			content=#{content},update_time=#{updateTime},update_user=#{updateUser}
+		where id=#{id}
+	</update>
+	
+	<!-- 删除文章 -->
+	<delete id="Doc_delete">
+		delete from t_wcm_doc where id=#{id}
+	</delete>
+	
+	<!-- 根据id获取文章信息 -->
+	<select id="Doc_Detail_GetById" resultType="cn.com.sinosoft.wcm.domain.wcm.TWcmArticle">
+		select 
+			t.id		id,
+			t.channel_id	channelId,
+			t.website_id	websiteId,
+			t.title		title,
+			t.content	content,
+			t.create_time	createTime,
+			t.create_user	createUser,
+			t.update_time	updateTime,
+			t.update_user	updateUser
+		from t_wcm_doc t
+		where t.id=#{id}
+	</select>
+
+</mapper>

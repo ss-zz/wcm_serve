@@ -11,12 +11,12 @@ public class TWcmArticle {
 	/**
 	 * 栏目id
 	 */
-	private Integer channel_id;
+	private Integer channelId;
 	
 	/**
 	 * 站点id
 	 */
-	private Integer website_id;
+	private Integer websiteId;
 	
 	/**
 	 * 文章标题
@@ -31,76 +31,93 @@ public class TWcmArticle {
 	/**
 	 * 创建时间
 	 */
-	private Date create_time;
+	private Date createTime;
 	
 	/**
 	 * 创建人
 	 */
-	private String create_user;
+	private String createUser;
 	
 	/**
 	 * 更新时间
 	 */
-	private Date update_time;
+	private Date updateTime;
 	
 	/**
 	 * 更新人
 	 */
-	private String update_user;
-	
+	private String updateUser;
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getChannel_id() {
-		return channel_id;
+
+	public Integer getChannelId() {
+		return channelId;
 	}
-	public void setChannel_id(Integer channel_id) {
-		this.channel_id = channel_id;
+
+	public void setChannelId(Integer channelId) {
+		this.channelId = channelId;
 	}
-	public Integer getWebsite_id() {
-		return website_id;
+
+	public Integer getWebsiteId() {
+		return websiteId;
 	}
-	public void setWebsite_id(Integer website_id) {
-		this.website_id = website_id;
+
+	public void setWebsiteId(Integer websiteId) {
+		this.websiteId = websiteId;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public String getContent() {
 		return content;
 	}
+
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getCreate_time() {
-		return create_time;
-	}
-	public void setCreate_time(Date create_time) {
-		this.create_time = create_time;
-	}
-	public String getCreate_user() {
-		return create_user;
-	}
-	public void setCreate_user(String create_user) {
-		this.create_user = create_user;
-	}
-	public Date getUpdate_time() {
-		return update_time;
-	}
-	public void setUpdate_time(Date update_time) {
-		this.update_time = update_time;
-	}
-	public String getUpdate_user() {
-		return update_user;
-	}
-	public void setUpdate_user(String update_user) {
-		this.update_user = update_user;
+
+	public Date getCreateTime() {
+		return createTime;
 	}
 
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public String getCreateUser() {
+		return createUser;
+	}
+
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	public String getUpdateUser() {
+		return updateUser;
+	}
+
+	public void setUpdateUser(String updateUser) {
+		this.updateUser = updateUser;
+	}
+	
 }

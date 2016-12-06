@@ -32,20 +32,17 @@ public class ChannelService {
 	/**
 	 * 栏目列表
 	 *
-	 * @param name
-	 * 			栏目名称
-	 * @param alias
-	 * 			栏目别名
+	 * @param str
+	 * 			查询参数（名称、别名）
 	 * @param websiteId
 	 * 			站点id
 	 * @param pageParam
 	 * 			分页参数
 	 * @return
 	 */
-	public PagingResult<TWcmChannel> getListChannel(String name,String alias,Integer websiteId,PageParam pageParam){
+	public PagingResult<TWcmChannel> getListChannel(String str,Integer websiteId,PageParam pageParam){
 		Map<String, Object> params=new HashMap<String, Object>();
-		params.put("name", name);
-		params.put("alias", alias);
+		params.put("str", str);
 		params.put("websiteId", websiteId);
 		PagingResult<TWcmChannel> result=baseDao.pagingSearch(NAMESPACE_BASE +"Channel_List", params, pageParam);
 		return result;
@@ -197,7 +194,7 @@ public class ChannelService {
 	 * 设置栏目列表页模板
 	 *
 	 * @param id
-	 * 			站点id
+	 * 			栏目id
 	 * @param templatesIdList
 	 * 			模板id
 	 * @return
@@ -215,7 +212,7 @@ public class ChannelService {
 	 * 设置栏目详情页模板
 	 *
 	 * @param id
-	 * 			站点id
+	 * 			栏目id
 	 * @param templatesIdDetail
 	 * 			模板id
 	 * @return

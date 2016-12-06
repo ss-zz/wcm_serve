@@ -35,11 +35,9 @@
 		<if test="websiteId != null">
 			and t.website_id=#{websiteId}
 		</if>
-		<if test="name != null">
-			and t.name=#{name}
-		</if>
-		<if test="alias != null">
-			and t.alias=#{alias}
+		<if test="str != null">
+			and (t.name like CONCAT('%',#{str},'%')
+ 				or t.alias like CONCAT('%',#{str},'%'))  
 		</if>
 	</select>
 	

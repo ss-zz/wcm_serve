@@ -23,11 +23,9 @@
 			t.update_user updateUser
 		 from t_wcm_website t
 		where 1=1
-		<if test="name != null">
-			and t.name=#{name}
-		</if>
-		<if test="alias != null">
-			and t.alias=#{alias}
+		<if test="str != null">
+			and (t.name like CONCAT('%',#{str},'%')
+ 				or t.alias like CONCAT('%',#{str},'%'))  
 		</if>
 	</select>
 	

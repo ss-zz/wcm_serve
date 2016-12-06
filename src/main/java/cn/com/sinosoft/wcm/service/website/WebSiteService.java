@@ -33,18 +33,15 @@ public class WebSiteService {
 	/**
 	 * 站点列表
 	 *
-	 * @param name
-	 * 			站点名称
-	 * @param alias
-	 * 			站点别名
+	 * @param str
+	 * 			查询参数
 	 * @param pageParam
 	 * 			分页参数
 	 * @return
 	 */
-	public PagingResult<TWcmWebsite> getListWebsite(String name,String alias,PageParam pageParam){
+	public PagingResult<TWcmWebsite> getListWebsite(String str,PageParam pageParam){
 		Map<String, Object> params=new HashMap<String, Object>();
-		params.put("name", name);
-		params.put("alias", alias);
+		params.put("str", str);
 		PagingResult<TWcmWebsite> result=baseDao.pagingSearch(NAMESPACE_BASE +"Website_List", params, pageParam);
 		return result;
 	}

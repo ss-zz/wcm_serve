@@ -30,10 +30,8 @@ public class ChannelMgrController {
 	/**
 	 * 栏目列表
 	 *
-	 * @param name
-	 * 			栏目名称
-	 * @param alias
-	 * 			栏目别名
+	 * @param str
+	 * 			查询参数（名称、别名）
 	 * @param websiteId
 	 * 			站点id
 	 * @param pageParam
@@ -41,10 +39,9 @@ public class ChannelMgrController {
 	 * @return
 	 */
 	@PostMapping("list")
-	public APIResult<PagingResult<TWcmChannel>> getList(String name,
-			String alias, Integer websiteId, PageParam pageParam) {
+	public APIResult<PagingResult<TWcmChannel>> getList(String str,Integer websiteId, PageParam pageParam) {
 		return new APIResult<PagingResult<TWcmChannel>>(
-				channelService.getListChannel(name, alias, websiteId, pageParam));
+				channelService.getListChannel(str, websiteId, pageParam));
 	}
 	
 	/**

@@ -29,20 +29,17 @@ public class WebSiteMgrController {
 	WebSiteService webSiteService;
 
 	/**
-	 * 
+	 * 站点列表
 	 *
-	 * @param name
-	 * 			站点名称
-	 * @param alias
-	 * 			站点别名
+	 * @param str
+	 * 			查询参数（名称、别名）
 	 * @param pageParam
 	 * 			分页参数
 	 * @return
 	 */
 	@GetMapping("list")
-	public APIResult<PagingResult<TWcmWebsite>> getList(String name,
-			String alias, PageParam pageParam) {
-		PagingResult<TWcmWebsite> result=webSiteService.getListWebsite(name, alias, pageParam);
+	public APIResult<PagingResult<TWcmWebsite>> getList(String str,PageParam pageParam) {
+		PagingResult<TWcmWebsite> result=webSiteService.getListWebsite(str, pageParam);
 		return new APIResult<PagingResult<TWcmWebsite>>(result);
 	}
 	

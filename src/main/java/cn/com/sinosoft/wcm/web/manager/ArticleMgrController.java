@@ -1,5 +1,7 @@
 package cn.com.sinosoft.wcm.web.manager;
 
+import javax.annotation.Resource;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +12,7 @@ import cn.com.sinosoft.tbf.domain.common.PageParam;
 import cn.com.sinosoft.tbf.domain.common.PagingResult;
 import cn.com.sinosoft.tbf.domain.common.ResultCode;
 import cn.com.sinosoft.wcm.domain.wcm.TWcmArticle;
+import cn.com.sinosoft.wcm.service.website.ArticleService;
 
 /**
  * 文章管理控制器
@@ -21,9 +24,16 @@ import cn.com.sinosoft.wcm.domain.wcm.TWcmArticle;
 @RequestMapping("mgr/article")
 public class ArticleMgrController {
 	
+	@Resource
+	ArticleService articleService;
+	
 	/**
-	 * 
+	 * 文章列表
 	 *
+	 * @param channelId
+	 * 			栏目id
+	 * @param websiteId
+	 * 			站点id
 	 * @param title
 	 * 			文章标题
 	 * @param pageParam
@@ -31,69 +41,75 @@ public class ArticleMgrController {
 	 * @return
 	 */
 	@PostMapping("list")
-	public APIResult<PagingResult<TWcmArticle>> getList(String title,PageParam pageParam) {
-		return new APIResult<PagingResult<TWcmArticle>>(
-				new PagingResult<TWcmArticle>());
+	public APIResult<PagingResult<TWcmArticle>> getList(Integer channelId,Integer websiteId,String title,PageParam pageParam) {
+		PagingResult<TWcmArticle> result=articleService.getDocList(channelId, websiteId, title, pageParam);
+		return new APIResult<PagingResult<TWcmArticle>>(result);
 	}
 	
 	/**
 	 * 添加文章
 	 *
 	 * @param tArticle
-	 * 			文章
+	 * 			文章信息
 	 * @return
 	 */
 	@PostMapping("add")
 	public APIResult<String> addArticle(TWcmArticle tArticle){
-		return new APIResult<>(ResultCode.SUCCESS.getCode(),"添加成功！");
+		int m=articleService.addDoc(tArticle);
+		if(m>0){
+			return new APIResult<>(ResultCode.SUCCESS.getCode(),"添加成功");
+		}
+		else {
+			return new APIResult<>(ResultCode.FAILURE.getCode(),"添加失败");
+		}
 	}
 	
 	/**
 	 * 删除文章
 	 *
 	 * @param id
-	 * 			id
+	 * 			文章id
 	 * @return
 	 */
 	@GetMapping("delete")
 	public APIResult<String> deleteArticle(Integer id){
-		return new APIResult<>(ResultCode.SUCCESS.getCode(),"删除成功！");
+		int m=articleService.deleteDoc(id);
+		if(m>0){
+			return new APIResult<>(ResultCode.SUCCESS.getCode(),"删除成功");
+		}
+		else {
+			return new APIResult<>(ResultCode.FAILURE.getCode(),"删除失败");
+		}
 	}
 	
 	/**
 	 * 获取文章信息
 	 *
 	 * @param id
-	 * 			id
+	 * 			文章id
 	 * @return
 	 */
 	@GetMapping("get/detail")
 	public APIResult<TWcmArticle> getArticle(Integer id){
-		return new APIResult<TWcmArticle>();
+		return new APIResult<TWcmArticle>(articleService.getDetailDoc(id));
 	}
 	
 	/**
 	 * 修改文章信息
 	 *
 	 * @param tArticle
-	 * 			文章
+	 * 			文章信息
 	 * @return
 	 */
 	@PostMapping("edit")
 	public APIResult<String> updateArticle(TWcmArticle tArticle){
-		return new APIResult<>(ResultCode.SUCCESS.getCode(),"修改成功！");
-	}
-	
-	/**
-	 * 设置文章所用到的资源（图片、视频等）
-	 *
-	 * @param id
-	 * 			id
-	 * @return
-	 */
-	@PostMapping("resource")
-	 public APIResult<String> setArticleResource(Integer id){
-		return new APIResult<>(ResultCode.SUCCESS.getCode(),"设置成功！");
+		int m=articleService.updateDoc(tArticle);
+		if(m>0){
+			return new APIResult<>(ResultCode.SUCCESS.getCode(),"修改成功");
+		}
+		else {
+			return new APIResult<>(ResultCode.FAILURE.getCode(),"修改失败");
+		}
 	}
 
 }
